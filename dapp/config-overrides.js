@@ -9,10 +9,8 @@ module.exports = function override(config) {
         "http": require.resolve("stream-http"),
         "https": require.resolve("https-browserify"),
         "os": require.resolve("os-browserify"),
-        "url": require.resolve("url"),
-        "path": require.resolve("path-browserify") 
+        "url": require.resolve("url")
     })
-    config.ignoreWarnings = [/Failed to parse source map/];
     config.resolve.fallback = fallback;
     config.plugins = (config.plugins || []).concat([
         new webpack.ProvidePlugin({
@@ -20,5 +18,6 @@ module.exports = function override(config) {
             Buffer: ['buffer', 'Buffer']
         })
     ])
+    config.ignoreWarnings = [/Failed to parse source map/];
     return config;
 }

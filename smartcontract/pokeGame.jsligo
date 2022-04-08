@@ -1,0 +1,17 @@
+type storage = set<address>;
+
+type parameter =
+| ["Poke"];
+
+type return_ = [list<operation>, storage];
+
+
+let poke = (store : storage) : return_ => {
+    return [ list([]) as list<operation>, Set.add(Tezos.source, store)];
+};
+
+let main = ([action, store] : [parameter, storage]) : return_ => {
+    return match (action, {
+       Poke: () => poke(store) }
+    )
+};
